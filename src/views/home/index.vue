@@ -2,7 +2,7 @@
   <div style="height: 100%; display: flex">
     <div class="left">
       <div class="box">
-        <el-button type="pramary" @click="addText">文本框</el-button>
+        <el-button type="pramary" @click="addText">自定义文本</el-button>
       </div>
     </div>
     <div class="content">
@@ -32,12 +32,10 @@
     </div>
     <div class="right">
       <component
-        :is="coms[current].is + 'Edit'"
+        :is="coms&&coms[current].is + 'Edit'"
         :model="coms[current].props"
         @input="setStting"
       ></component>
-        {{coms}}
-
     </div>
   </div>
 </template>
@@ -68,13 +66,13 @@ export default {
   methods: {
     //evt里面有两个值，一个evt.added 和evt.removed  可以分别知道移动元素的ID和删除元素的ID
     change(evt) {
-      const { newIndex, oldIndex } = evt;
+      console.log(evt,'3')
+      const { newIndex, oldIndex } = evt.moved;
       if (newIndex === 0 || oldIndex === 0) {
         return false;
       }
-      // setTimeout(() => {
-      //   this.current = newIndex;
-      // }, 500);
+      console.log(newIndex,oldIndex)
+      this.current = newIndex;
     },
     setProps(e) {
       console.log(e, "phoneEmit");
@@ -139,8 +137,8 @@ export default {
 .content .phone {
   height: 875px;
   width: 375px;
-  border: 1px solid red;
   padding: 0 5px;
+  box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.2);
 }
 .right {
   height: 100%;

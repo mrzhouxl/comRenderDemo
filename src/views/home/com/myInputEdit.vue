@@ -1,6 +1,5 @@
 <template>
   <div>
-      {{model}}
     <el-form ref="form" label-width="80px" >
       <el-form-item label="文本标题">
         <el-input :value="model.title" @input="(e)=>emitEdit(e,'title')"></el-input>
